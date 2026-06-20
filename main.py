@@ -46,3 +46,57 @@ print()
 
 print(" ENG KO'P MAOSH OLUVCHI ")
 print(top_xodim())
+
+import xodimlar_crud
+
+
+def menu():
+    while True:
+        print("\n1. Ko'rish\n2. Qo'shish\n3. Yangilash\n4. O'chirish\n5. Qidirish")
+        print("6. Executemany\n7. UPSERT\n8. Tranzaksiya\n0. Chiqish")
+        tanlov = input("Tanlang: ")
+
+        if tanlov == "1":
+            for x in xodimlar_crud.get_all():
+                print(x)
+        elif tanlov == "2":
+            xodimlar_crud.create(
+                input("Ism: "),
+                input("Bo'lim: "),
+                float(input("Maosh: ")),
+                input("Email: "),
+            )
+        elif tanlov == "3":
+            xodimlar_crud.update(
+                int(input("ID: ")),
+                input("Yangi Ism: "),
+                input("Yangi Bo'lim: "),
+                float(input("Yangi Maosh: ")),
+            )
+        elif tanlov == "4":
+            xodimlar_crud.delete(int(input("ID: ")))
+        elif tanlov == "5":
+            print(xodimlar_crud.get_by_id(int(input("ID: "))))
+        elif tanlov == "6":
+            xodimlar_crud.insert_many_xodimlar()
+        elif tanlov == "7":
+            xodimlar_crud.upsert_xodim(
+                input("Ism: "),
+                input("Bo'lim: "),
+                float(input("Maosh: ")),
+                input("Email: "),
+            )
+        elif tanlov == "8":
+            xodimlar_crud.create_xodim_with_project(
+                input("Ism: "),
+                input("Bo'lim: "),
+                float(input("Maosh: ")),
+                input("Email: "),
+                input("Loyiha: "),
+            )
+        elif tanlov == "0":
+            break
+
+
+if __name__ == "__main__":
+    menu()
